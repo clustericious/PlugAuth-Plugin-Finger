@@ -1,1 +1,9 @@
---- {}
+---
+pod_spelling_system:
+  stopwords:
+    - PlugAuth.conf
+    - PlugAuth
+
+pod_coverage:
+  private:
+    - PlugAuth::Plugin::.*#init
