@@ -58,53 +58,53 @@ sub init
   );
   
   $server->start(sub {
-    my($req, $res) = @_;
+    my $tx = shift;
     $self->app->refresh;
-    if($req->listing_request)
+    if($tx->req->listing_request)
     {
-      $res->say("users: ");
-      $res->say("  $_") for $self->app->auth->all_users;
-      $res->say("groups: ");
-      $res->say("  $_") for $self->app->authz->all_groups;
-      if($req->verbose)
+      $tx->res->say("users: ");
+      $tx->res->say("  $_") for $self->app->auth->all_users;
+      $tx->res->say("groups: ");
+      $tx->res->say("  $_") for $self->app->authz->all_groups;
+      if($tx->req->verbose)
       {
-        $res->say("grants: ");
-        $res->say("  $_") for @{ $self->app->authz->granted };
+        $tx->res->say("grants: ");
+        $tx->res->say("  $_") for @{ $self->app->authz->granted };
       }
     }
     else
     {
-      my $name = lc "$req"; # stringifying gets the user and the hostname, but not the verbosity
+      my $name = lc $tx->req->as_string; # stringifying gets the user and the hostname, but not the verbosity
       my $found = 0;
       if(my $groups = $self->app->authz->groups_for_user($name))
       {
-        $res->say("user: " . $name);
-        $res->say("belongs to: ");
-        $res->say("  " . join(', ', sort @$groups));
+        $tx->res->say("user: " . $name);
+        $tx->res->say("belongs to: ");
+        $tx->res->say("  " . join(', ', sort @$groups));
         $found = 1;
       }
       elsif(my $users = $self->app->authz->users_in_group($name))
       {
-        $res->say("group: " . $name);
-        $res->say("members: ");
-        $res->say("  " . join(', ', sort @$users));
+        $tx->res->say("group: " . $name);
+        $tx->res->say("members: ");
+        $tx->res->say("  " . join(', ', sort @$users));
         $found = 1;
       }
       else
       {
-        $res->say("no such user or group");
+        $tx->res->say("no such user or group");
       }
-      if($req->verbose && $found)
+      if($tx->req->verbose && $found)
       {
-        $res->say("granted: ");
+        $tx->res->say("granted: ");
         foreach my $grant (@{ $self->app->authz->granted })
         {
-          $res->say("  $grant") 
+          $tx->res->say("  $grant") 
             if $grant =~ /:(.*)$/ && grep { $name eq lc $_ || $_ eq '#u' } map { s/^\s+//; s/\s+$//; $_ } split /,/, $1;
         }
       }
     }
-    $res->done;
+    $tx->res->done;
   });
 }
 
