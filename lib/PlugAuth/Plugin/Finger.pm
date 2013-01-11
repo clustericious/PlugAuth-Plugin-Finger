@@ -54,7 +54,8 @@ sub init
   INFO "finger binding to port $port";
   
   my $server = $self->{server} = AnyEvent::Finger::Server->new(
-    port => $port,
+    port         => $port,
+    forward_deny => 1,
   );
   
   $server->start(sub {
