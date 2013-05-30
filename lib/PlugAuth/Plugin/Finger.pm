@@ -44,6 +44,12 @@ finger clients cannot be configured to connect to a different port, but
 you can use C<iptables> on Linux, or use an equivalent tool on other operating
 systems to forward port 79 to port 8079.
 
+=head1 CAVEATS
+
+This plugin won't work as currently implemented if you are using a start_mode
+which forks, such as hypnotoad.  Until that is solved this plugin will probably
+prevent you from scaling your PlugAuth deployment.
+
 =cut
 
 sub init
