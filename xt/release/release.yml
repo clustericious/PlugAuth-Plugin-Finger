@@ -4,6 +4,7 @@ pod_spelling_system:
     - PlugAuth.conf
     - PlugAuth
     - conf
+    - hypnotoad
 
 pod_coverage:
   private:
