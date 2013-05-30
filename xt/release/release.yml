@@ -3,6 +3,7 @@ pod_spelling_system:
   stopwords:
     - PlugAuth.conf
     - PlugAuth
+    - conf
 
 pod_coverage:
   private:
