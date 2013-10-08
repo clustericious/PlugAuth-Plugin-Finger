@@ -1,0 +1,8 @@
+AnyEvent::Finger::Server
+EV
+ExtUtils::MakeMaker
+Log::Log4perl
+PlugAuth::Role::Plugin
+Role::Tiny::With
+Test::More
+YAML::XS
