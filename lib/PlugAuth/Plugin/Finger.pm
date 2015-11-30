@@ -69,13 +69,13 @@ sub init
     $self->app->refresh;
     if($tx->req->listing_request)
     {
-      $tx->res->say("users: ");
+      $tx->res->say("users:");
       $tx->res->say("  $_") for $self->app->auth->all_users;
-      $tx->res->say("groups: ");
+      $tx->res->say("groups:");
       $tx->res->say("  $_") for $self->app->authz->all_groups;
       if($tx->req->verbose)
       {
-        $tx->res->say("grants: ");
+        $tx->res->say("grants:");
         $tx->res->say("  $_") for @{ $self->app->authz->granted };
       }
     }
@@ -85,15 +85,15 @@ sub init
       my $found = 0;
       if(my $groups = $self->app->authz->groups_for_user($name))
       {
-        $tx->res->say("user: " . $name);
-        $tx->res->say("belongs to: ");
+        $tx->res->say("user:" . $name);
+        $tx->res->say("belongs to:");
         $tx->res->say("  " . join(', ', sort @$groups));
         $found = 1;
       }
       elsif(my $users = $self->app->authz->users_in_group($name))
       {
-        $tx->res->say("group: " . $name);
-        $tx->res->say("members: ");
+        $tx->res->say("group:" . $name);
+        $tx->res->say("members:");
         $tx->res->say("  " . join(', ', sort @$users));
         $found = 1;
       }
@@ -103,7 +103,7 @@ sub init
       }
       if($tx->req->verbose && $found)
       {
-        $tx->res->say("granted: ");
+        $tx->res->say("granted:");
         foreach my $grant (@{ $self->app->authz->granted })
         {
           $tx->res->say("  $grant") 
