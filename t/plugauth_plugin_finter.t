@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use 5.010;
 use Test::Clustericious::Log note => 'INFO..ERROR', diag => 'FATAL';
 use Test::Clustericious::Cluster;
 use EV;
@@ -39,10 +40,15 @@ sub finger
   my($user) = @_;
 
   my $done = AE::cv;
+  state $port;
+
+  $port = $cluster->apps->[0]->config->plugins->[0]->{'PlugAuth::Plugin::Finger'}->{port}
+    unless $port;
+ 
 
   AnyEvent::Finger::Client->new(
     hostname => 'localhost',
-    port     => 8079,
+    port     => $port,
   )->finger($user, sub {
     $done->send(shift);
   }, on_error => sub {
@@ -65,4 +71,5 @@ __DATA__
 ---
 url: <%= cluster->url %>
 plugins:
-  - PlugAuth::Plugin::Finger: {}
+  - PlugAuth::Plugin::Finger:
+      port: <%= IO::Socket::INET->new(Listen => 5, LocalAddr => '127.0.0.1')->sockport %>

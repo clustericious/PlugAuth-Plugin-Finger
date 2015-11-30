@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Added port option
+  - Moved repository to clustericious org on github
+    (updated meta appropriately)
 
 0.01      2013-05-30 15:28:32 America/New_York
   - initial version

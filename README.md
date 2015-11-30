@@ -7,7 +7,8 @@ Add a finger protocol interface to your PlugAuth server
 In your PlugAuth.conf:
 
     plugins:
-      - PlugAuth::Plugin::Finger: {}
+      - PlugAuth::Plugin::Finger:
+          port: 8079
 
 Then from the command line, to list all users/groups:
 
@@ -32,6 +33,12 @@ is privileged under Unix.  Otherwise it will listen to port 8079.  Many
 finger clients cannot be configured to connect to a different port, but
 you can use `iptables` on Linux, or use an equivalent tool on other operating
 systems to forward port 79 to port 8079.
+
+# PLUGIN OPTIONS
+
+## port
+
+Specify the port.  This is will default to 79 or 8079 if you do not specify it.
 
 # CAVEATS
 

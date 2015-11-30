@@ -1,8 +1,11 @@
-AnyEvent::Finger::Server
+AE
+AnyEvent::Finger
+Clustericious
 EV
 ExtUtils::MakeMaker
 Log::Log4perl
+PlugAuth
 PlugAuth::Role::Plugin
-Role::Tiny::With
+Role::Tiny
+Test::Clustericious::Cluster
 Test::More
-YAML::XS

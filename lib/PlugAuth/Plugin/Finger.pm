@@ -2,9 +2,8 @@ package PlugAuth::Plugin::Finger;
 
 use strict;
 use warnings;
-use v5.10;
+use 5.010001;
 use Role::Tiny::With;
-use YAML::XS qw( Dump );
 use AnyEvent::Finger::Server;
 use Log::Log4perl qw( :easy );
 
@@ -18,7 +17,8 @@ with 'PlugAuth::Role::Plugin';
 In your PlugAuth.conf:
 
  plugins:
-   - PlugAuth::Plugin::Finger: {}
+   - PlugAuth::Plugin::Finger:
+       port: 8079
 
 Then from the command line, to list all users/groups:
 
@@ -44,6 +44,12 @@ finger clients cannot be configured to connect to a different port, but
 you can use C<iptables> on Linux, or use an equivalent tool on other operating
 systems to forward port 79 to port 8079.
 
+=head1 PLUGIN OPTIONS
+
+=head2 port
+
+Specify the port.  This is will default to 79 or 8079 if you do not specify it.
+
 =head1 CAVEATS
 
 This plugin won't work as currently implemented if you are using a start_mode
@@ -55,7 +61,10 @@ prevent you from scaling your PlugAuth deployment.
 sub init
 {
   my($self) = @_;
-  my $port = ($> && $^O !~ /^(cygwin|MSWin32)$/) ? 8079 : 79;
+  
+  my $port = $self->plugin_config->port(
+    default => $> && $^O !~ /^(cygwin|MSWin32)$/ ? 8079 : 79,
+  );
   
   INFO "finger binding to port $port";
   
