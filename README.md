@@ -41,7 +41,7 @@ prevent you from scaling your PlugAuth deployment.
 
 # AUTHOR
 
-Graham Ollis <plicease@cpan.org>
+Graham Ollis &lt;plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
