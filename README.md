@@ -1,4 +1,4 @@
-# PlugAuth::Plugin::Finger
+# PlugAuth::Plugin::Finger [![Build Status](https://secure.travis-ci.org/clustericious/PlugAuth-Plugin-Finger.png)](http://travis-ci.org/clustericious/PlugAuth-Plugin-Finger)
 
 Add a finger protocol interface to your PlugAuth server
 
