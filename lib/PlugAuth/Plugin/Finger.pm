@@ -9,7 +9,7 @@ use Log::Log4perl qw( :easy );
 
 with 'PlugAuth::Role::Plugin';
 
-# ABSTRACT: Add a finger protocol interface to your PlugAuth server
+# ABSTRACT: (Deprecated) Add a finger protocol interface to your PlugAuth server
 # VERSION
 
 =head1 SYNOPSIS
@@ -33,6 +33,9 @@ and to see the granted permissions:
  % finger -l foo@localhost
 
 =head1 DESCRIPTION
+
+B<NOTE>: This module has been deprecated, and may be removed on or after 31 December 2018.
+Please see L<https://github.com/clustericious/Clustericious/issues/46>.
 
 This plugin provides a finger protocol interface to PlugAuth.  Through
 it you can see the users, groups and their permissions through the finger

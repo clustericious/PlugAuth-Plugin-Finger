@@ -1,6 +1,6 @@
 # PlugAuth::Plugin::Finger [![Build Status](https://secure.travis-ci.org/clustericious/PlugAuth-Plugin-Finger.png)](http://travis-ci.org/clustericious/PlugAuth-Plugin-Finger)
 
-Add a finger protocol interface to your PlugAuth server
+(Deprecated) Add a finger protocol interface to your PlugAuth server
 
 # SYNOPSIS
 
@@ -23,6 +23,9 @@ and to see the granted permissions:
     % finger -l foo@localhost
 
 # DESCRIPTION
+
+**NOTE**: This module has been deprecated, and may be removed on or after 31 December 2018.
+Please see [https://github.com/clustericious/Clustericious/issues/46](https://github.com/clustericious/Clustericious/issues/46).
 
 This plugin provides a finger protocol interface to PlugAuth.  Through
 it you can see the users, groups and their permissions through the finger
@@ -48,7 +51,7 @@ prevent you from scaling your PlugAuth deployment.
 
 # AUTHOR
 
-Graham Ollis &lt;plicease@cpan.org>
+Graham Ollis <plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
